@@ -6,18 +6,18 @@
 import logging
 from math import floor, sqrt, log, log2
 
-from tools.secgcd import (
+from sec_groups.tools.secgcd import (
     extended_euclid_xgcd,
     secure_gcd,
     secure_xgcd,
     secure_binary_xgcd,
     secure_division,
 )
-from tools.bitlen import bit_length_integrated
-from tools.repeat import secure_pow
+from sec_groups.tools.bitlen import bit_length_integrated
+from sec_groups.tools.repeat import secure_pow
 from mpyc.runtime import mpc
 import mpyc.gmpy as gmpy2
-from tools.find_primes import find_primes_for_schnorr, _find_ike_prime
+from sec_groups.tools.find_primes import find_primes_for_schnorr, _find_ike_prime
 
 logger_cg = logging.getLogger("classgroups")
 logger_cg.setLevel(logging.INFO)

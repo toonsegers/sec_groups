@@ -9,7 +9,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from mpyc.runtime import mpc
-from tools.secgcd import (
+from sec_groups.tools.secgcd import (
     secure_binary_xgcd,
     secure_xgcd,
     secure_division,

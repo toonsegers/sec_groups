@@ -13,7 +13,7 @@ if project_root not in sys.path:
 
 
 from sec_groups.fingroups import RubiksCube
-from tools import sampling
+from sec_groups.tools import sampling
 
 
 def count_samples_in_buckets(samples):

@@ -8,6 +8,8 @@ The oblivious operations are defined by a set of secure multiparty computation (
 
 For our implementation we use the MPyC framework: [https://github.com/lschoe/].
 
+*Note: This implementation is work-in-progress. (Expect many bugs/issues.) A future version of Secure Groups will be incorporated in MPyC. Until then, please install this work-in-progress version by following the steps explained under Installation.*
+
 ### Constant-time extended gcd algorithm and protocol
 We introduce a practical protocol to calculate the extended gcd (xgcd) of two secret-shared integers adapting recent work by Bernstein and Yang [https://eprint.iacr.org/2019/266] from the p-adic setting to the finite field setting. This xgcd MPC protocol is a first and of independent interest. We apply it to implement the class group operation in MPC.  
 

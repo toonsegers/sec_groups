@@ -10,9 +10,9 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from mpyc.runtime import mpc
-from tools.group_encode import encode_to_schnorr, decode_from_schnorr, encode_v3, decode_v3
-from tools.elgamal import encrypt, threshold_decrypt
-from tools.find_primes import find_safe_primes
+from sec_groups.tools.group_encode import encode_to_schnorr, decode_from_schnorr, encode_v3, decode_v3
+from sec_groups.tools.elgamal import encrypt, threshold_decrypt
+from sec_groups.tools.find_primes import find_safe_primes
 from sec_groups.fingroups import QuadraticResidue
 from sec_groups.secgroups import SecureGroup, repeat_public_base_secret_output
 

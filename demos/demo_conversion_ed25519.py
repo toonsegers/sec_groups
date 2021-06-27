@@ -8,8 +8,8 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from mpyc.runtime import mpc
-from tools.elgamal import encrypt, threshold_decrypt
-from tools.group_encode import encode_on_curve, decode_from_curve, encode_v3, decode_v3
+from sec_groups.tools.elgamal import encrypt, threshold_decrypt
+from sec_groups.tools.group_encode import encode_on_curve, decode_from_curve, encode_v3, decode_v3
 from sec_groups.fingroups import EllipticCurve
 from sec_groups.secgroups import SecureGroup, repeat_public_base_secret_output
 import sec_groups.ellcurves as ell

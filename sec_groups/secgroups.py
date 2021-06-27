@@ -20,7 +20,7 @@ from mpyc.seclists import seclist
 import mpyc.mpctools as mpctools
 import sec_groups.fingroups as fg
 import sec_groups.classgrps as classgrps
-from tools.repeat import (
+from sec_groups.tools.repeat import (
     repeat_public_base_secret_output,
     secure_repeat_public_base_public_output,
     secure_repeat_secret_base_secret_output,

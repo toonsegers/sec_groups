@@ -9,7 +9,7 @@ if project_root not in sys.path:
 
 from mpyc.runtime import mpc
 
-from tools.find_primes import find_safe_primes
+from sec_groups.tools.find_primes import find_safe_primes
 from sec_groups.fingroups import S, QuadraticResidue, EllipticCurve, FormClassGroup
 import sec_groups.ellcurves as ell
 import sec_groups.pairing as pairing

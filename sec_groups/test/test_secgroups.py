@@ -7,7 +7,7 @@ if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
 from mpyc.runtime import mpc
-from tools.find_primes import find_safe_primes
+from sec_groups.tools.find_primes import find_safe_primes
 import sec_groups.ellcurves as ell
 import sec_groups.fingroups as fg
 import sec_groups.secgroups as sfg
