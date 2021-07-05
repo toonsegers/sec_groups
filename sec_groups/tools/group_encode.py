@@ -95,7 +95,7 @@ def encode_v3(a, group, k=8, encode_zero=False):  # TODO: add flag return_zero_e
     """
     logger_enc.debug(f"Enter encode with k={k}, encode_zero={encode_zero}")
     if group.order is not None:
-        assert a in range(group.order // 2**k), "Input out of range."
+        assert a in range(group.order // 2**k), f"Input out of range: {a=} not < {group.order} // 2**{k}."
     else:
         # Assume group order is large enough.
         pass
@@ -132,10 +132,11 @@ def encode_v3(a, group, k=8, encode_zero=False):  # TODO: add flag return_zero_e
 def decode_v3(a_enc, k=8):
     # If a_enc contains two elements, assume encoding of zero is passed along.
     encode_zero = False
-    if isinstance(a_enc, list) and len(a_enc)==2:
+    if isinstance(a_enc, (tuple, list)) and len(a_enc)==2:
         a_enc, z_enc = a_enc[0], a_enc[1]
         logger_enc.debug(f"z_enc={z_enc}.")
         encode_zero = True
+        logger_enc.debug(f"Encoding of zero passed to decode.")
 
     if isinstance(a_enc.value, (tuple, list)):
         a = a_enc.value[0]

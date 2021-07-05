@@ -1,5 +1,4 @@
 from math import log
-import random
 import os
 import sys
 
@@ -15,36 +14,6 @@ import sec_groups.ellcurves as ell
 import sec_groups.pairing as pairing
 import sec_groups.secgroups as sfg
 from sec_groups.classgrps import secure_binary_reduce
-
-
-def generate_dixon_cube_w(generating_set, k):
-    """Generate random group element with k iterations.
-
-    See: https://people.math.carleton.ca/~jdixon/RandomGroupElts.pdf
-    """
-    from functools import reduce
-
-    s = type(generating_set[0])
-    d = len(generating_set)
-    # dixon_w = copy.deepcopy(generating_set)
-    dixon_w = generating_set.copy()
-    for i in range(d + 1, k + 1):
-        x_rhs = reduce(
-            s.operation, [x for x in dixon_w if bool(random.getrandbits(1))], s.identity
-        )
-        x_lhs = reduce(
-            s.operation,
-            [x.inverse() for x in dixon_w if bool(random.getrandbits(1))][::-1],
-            s.identity,
-        )
-        x_next = x_lhs @ x_rhs
-        dixon_w.append(x_next)
-    return dixon_w
-
-
-def random_group_element(dixon_cube):
-    dix = generate_dixon_cube_w(dixon_cube, len(dixon_cube) + 1)
-    return dix[-1]
 
 
 async def suite1():
@@ -252,10 +221,6 @@ async def suite1():
     assert (g2 ^ 2) @ g1 @ (g2 ^ 3) @ g1 @ (g2 ^ 2) == group(
         (7, 8, 9, 10, 0, 1, 3, 2, 4, 6, 5)
     )
-    k = int(log(group.order, 2)) ** 2
-    dix = generate_dixon_cube_w([g1, g2], k)
-    r = random_group_element(dix)
-    print("WIP: random based on Dixon cube=", r)
 
     print("Test more of S(11).")
     group = S(
