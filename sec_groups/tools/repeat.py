@@ -1,7 +1,7 @@
 import asyncio
 
 from mpyc.runtime import mpc
-from mpyc.finfields import FiniteFieldElement
+from mpyc.finfields import FiniteFieldElement, GF
 from mpyc.runtime import mpc
 from mpyc.sectypes import SecureObject, SecureFiniteField, SecureInteger
 from mpyc.thresha import _recombination_vector
@@ -176,8 +176,11 @@ async def secure_repeat_public_base_public_output(a, x) -> asyncio.Future:
     if not isinstance(a, list):
         a, x = [a], [x]
     group = type(a[0])
+    field = GF(modulus = group.order)
+
     m = len(mpc.parties)
-    lambda_i = _recombination_vector(x[0].field, range(1, m + 1), 0)[mpc.pid]
+    lambda_i = _recombination_vector(field, range(1, m + 1), 0)[mpc.pid]
+
     x_i = await mpc.gather(x)
     e_i = [int(lambda_i * s_i) for s_i in x_i]
     c_i = mpctools.reduce(group.operation, map(group.repeat, a, e_i))

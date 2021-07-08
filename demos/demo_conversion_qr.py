@@ -29,7 +29,7 @@ async def main():
     sec_aG = repeat_public_base_secret_output(g, sec_a, sec_grp)
     pubkey = await mpc.output(sec_aG)
 
-    # Encode input m to curve point; Also encode 0 (to Z), required for decoding in MPC
+    # Encode input m to curve point 
     m = 301
     print("Plaintext: ", m)
     print("Binary representation of secret input: ", bin(m))
@@ -61,6 +61,3 @@ if __name__ == "__main__":
     mpc.run(main())
 
 
-# TODO:
-# 1: encode_to_schnorr / encode_to_curve: make uniform API
-# 1. Enable all regular MPC methods on secgrp types

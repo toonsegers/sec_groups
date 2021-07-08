@@ -15,9 +15,10 @@ from sec_groups.secgroups import SecureGroup, repeat_public_base_secret_output
 import sec_groups.ellcurves as ell
 
 async def main():
-    # group = EllipticCurve(ell.ED25519, ell.ED_AFF, ell.Edwards_Affine_Arithm)
-    group = EllipticCurve(ell.ED448, ell.ED_AFF, ell.Edwards_Affine_Arithm)
-    sec_grp = SecureGroup(group, group.arithm)  # Passing of (secure) arithmetic is mandatory with current API (also required to receive .x, .y, .z getters/setters).
+    group = EllipticCurve(ell.ED25519, ell.ED_AFF, ell.Edwards_Affine_Arithm)
+    # group = EllipticCurve(ell.ED448, ell.ED_AFF, ell.Edwards_Affine_Arithm)
+    # Passing of (secure) arithmetic is mandatory with current API (also required to receive .x, .y, .z getters/setters).
+    sec_grp = SecureGroup(group, group.arithm)  
     g = group.generator
 
     await mpc.start()
@@ -27,7 +28,7 @@ async def main():
     sec_aG = repeat_public_base_secret_output(g, sec_a, sec_grp)
     pubkey = await mpc.output(sec_aG)
 
-    # Encode input m to curve point; Also encode 0 (to Z), required for decoding in MPC
+    # Encode input m to curve point 
     m = 100
     # M_encoded, Z_encoded = encode_on_curve(m, group)
     M_encoded = encode_v3(m, group)
@@ -58,5 +59,4 @@ if __name__ == "__main__":
 
 
 # TODOs
-# 1: Test mpc.gather with sec_grps2
 # 2: Make threshold_decrypt an mpc_coro
