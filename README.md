@@ -8,6 +8,8 @@ The oblivious operations are defined by a set of secure multiparty computation (
 
 For our implementation we use the MPyC framework: [https://github.com/lschoe/].
 
+Please find the write-up of this work in Chapter 4 of this Horizon2020 deliverable (published on June 30, 2021): [https://media.voog.com/0000/0042/1115/files/D2.4%20%E2%80%93%20Revision%20of%20Privacy-Enhancing%20Cryptographic%20Primitives%20for%20Ledgers.pdf] 
+
 *Note: This implementation is work-in-progress. (Expect many bugs/issues.) A future version of Secure Groups will be incorporated in MPyC. Until then, please install this work-in-progress version by following the steps explained under Installation.*
 
 ### Constant-time extended gcd algorithm and protocol
