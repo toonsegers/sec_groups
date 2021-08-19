@@ -12,4 +12,5 @@ install:
     - cd mpyc
     - python setup.py install
     - pip install gmpy2
+    - cd ..
 script: python -m unittest discover

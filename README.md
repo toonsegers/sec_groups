@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/toonsegers/sec_groups.svg?branch=master)](https://travis-ci.com/toonsegers/sec_groups)
+
 # Secure Groups
 The 'Secure Groups' Python package implements the Secure Group scheme for several mathematical groups.
 
