@@ -42,8 +42,10 @@ fields as defined in MPyC (mpyc.finfields.ExtensionFieldElement).
 """
 import copy
 
-from sec_groups.ellcurves import BN256, BN256_TWIST
-
+#from sec_groups.ellcurves import BN256, BN256_TWIST
+from mpyc.fingroups import EllipticCurve
+BN256 = EllipticCurve('BN256')
+BN256_TWIST = EllipticCurve('BN256_twist')
 
 GFp_1 = BN256.field
 GFp_2 = BN256_TWIST.field
@@ -410,7 +412,7 @@ def line_func_add(r, p, q, r2):
     t2 = t2 * 2
     r_y = t - t2
 
-    r_out = type(r)((r_x, r_y, r_z))
+    r_out = type(r)((r_x, r_y, r_z), check=False)
 
     t = p.y + r_z
     t = t ** 2
@@ -458,7 +460,7 @@ def line_func_double(r, q):
 
     # assert r_z == r.y * r.z * 2 # TS/TODO: commented out to test secure computation
 
-    r_out = type(r)((r_x, r_y, r_z))
+    r_out = type(r)((r_x, r_y, r_z), check=False)
     # assert r_out.is_on_curve()
 
     a = r.x + E
@@ -518,7 +520,7 @@ def miller(q, p):
     # TODO: Are Jacobian or affine coordinates required?
     # TODO: Add `assert p.z == 1`? And same for q?
 
-    mQ = -Q
+    mQ = ~Q
 
     f = GFp_12(gfp_6_zero, gfp_6_one)
     T = Q
@@ -629,10 +631,10 @@ def optimal_ate(a, b):
     """
 
     # Convert to Jacobian coordinates with Z==1.
-    a = a.to_affine()
-    a = a.to_jacobian()
-    b = b.to_affine()
-    b = b.to_jacobian()
+    # NB: a and b can actually be projective. After normalization rest of code will
+    # continue as if points are Jacobian.
+    a = a.normalize()
+    b = b.normalize()
 
     # if int(a.z) == 0 or int(b.z) == 0:
     #     return GFp_12(gfp_6_zero, gfp_6_one)
