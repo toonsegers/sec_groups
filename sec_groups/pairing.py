@@ -42,7 +42,7 @@ fields as defined in MPyC (mpyc.finfields.ExtensionFieldElement).
 """
 import copy
 
-from sec_grps2.ellcurves import BN256, BN256_TWIST
+from sec_groups.ellcurves import BN256, BN256_TWIST
 
 
 GFp_1 = BN256.field
