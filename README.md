@@ -1,21 +1,23 @@
 [![Build Status](https://app.travis-ci.com/toonsegers/sec_groups.svg)](https://app.travis-ci.com/toonsegers/sec_groups)
 
 # Secure Groups
-The 'Secure Groups' Python package implements the Secure Group scheme for several mathematical groups.
+This 'Secure Groups' Python package implements the Secure Group scheme for several mathematical groups.
+
+**Please note:** This work is superseded by and integrated in [MPyC](https://github.com/lschoe/mpyc) since November 2021 ([this commit](https://github.com/lschoe/mpyc/commit/136bb8d2d3e0f0e99413f94ec7d10487d90408a1)). See the `fingroups` and `secgroups` modules in the MPyC-runtime in particular.
 
 ## Secure Group scheme
 The Secure Group scheme implements finite groups as oblivious data structures. For a given group, the scheme defines the oblivious representation of, and oblivious operations on group elements. Operations include the group law, exponentiation and inversion, random sampling and encoding/decoding.
 
 The oblivious operations are defined by a set of secure multiparty computation (MPC) protocols. Practical protocols are presented for the group of quadratic residues, elliptic curves groups and class groups of imaginary quadratic orders. We demonstrate these protocols in a standard setting for information theoretically secure MPC, tolerating a dishonest minority of passively corrupt parties. 
 
-For our implementation we use the MPyC framework: [https://github.com/lschoe/].
+For our implementation we use the [MPyC framework](https://github.com/lschoe/). 
 
-Please find the write-up of this work in Chapter 4 of this Horizon2020 deliverable (published on June 30, 2021): [https://media.voog.com/0000/0042/1115/files/D2.4%20%E2%80%93%20Revision%20of%20Privacy-Enhancing%20Cryptographic%20Primitives%20for%20Ledgers.pdf] 
+Please find the write-up of this work in Chapter 4 of this [Horizon2020 deliverable (published on June 30, 2021)](https://media.voog.com/0000/0042/1115/files/D2.4%20%E2%80%93%20Revision%20of%20Privacy-Enhancing%20Cryptographic%20Primitives%20for%20Ledgers.pdf).
 
-*Note: This implementation is work-in-progress. (Expect many bugs/issues.) A future version of Secure Groups will be incorporated in MPyC. Until then, please install this work-in-progress version by following the steps explained under Installation.*
+*Note: This implementation is work-in-progress. Expect bugs.*
 
 ### Constant-time extended gcd algorithm and protocol
-We introduce a practical protocol to calculate the extended gcd (xgcd) of two secret-shared integers adapting recent work by Bernstein and Yang [https://eprint.iacr.org/2019/266] from the p-adic setting to the finite field setting. This xgcd MPC protocol is a first and of independent interest. We apply it to implement the class group operation in MPC.  
+We introduce a practical protocol to calculate the extended gcd (xgcd) of two secret-shared integers adapting [a 2019 result by Bernstein and Yang](https://eprint.iacr.org/2019/266) from the p-adic setting to the finite field setting. This xgcd MPC protocol is a first and of independent interest. We apply it to implement the class group operation in MPC.  
 
 ### Conversion protocol for ciphertexts to secret shares
 To demonstrate the application of secure groups, we extend a classical threshold cryptosystem with a protocol to convert ciphertexts to secret shares. This functionality enables in- and output to a multiparty computation by communicating one ciphertext over an insecure channel. 
